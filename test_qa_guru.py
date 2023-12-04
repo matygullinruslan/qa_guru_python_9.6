@@ -97,6 +97,7 @@ def readable_function(func, *args, **kwargs):
     return f'{func_name} {{args_names}}'
 
 
+
 def open_browser(browser_name):
     actual_result = readable_function(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
