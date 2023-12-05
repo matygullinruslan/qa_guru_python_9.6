@@ -6,17 +6,14 @@ def test_dark_theme_by_time():
     Протестируйте правильность переключения темной темы на сайте в зависимости от времени
     :param dark_theme:
     """
-    is_dark_theme = None
+    current_time = time(hour=23)
 
-
-current_time = time(hour=23)
-
-if current_time.hour > 22 or current_time.hour < 6:
-    is_dark_theme = True
-# TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
-else:
-    False
-assert is_dark_theme is True
+    if current_time.hour > 22 or current_time.hour < 6:
+        is_dark_theme = True
+    # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
+    else:
+        is_dark_theme = False
+    assert is_dark_theme is True
 
 
 def test_dark_theme_by_time_and_user_choice():
@@ -33,11 +30,11 @@ def test_dark_theme_by_time_and_user_choice():
     #  но учтите что темная тема может быть включена вручную
 
 
-if current_time.hour > 22 or current_time.hour < 6 or dark_theme_enabled_by_user:
-    is_dark_theme = True
-else:
-    is_dark_theme = False
-assert is_dark_theme is True
+    if current_time.hour > 22 or current_time.hour < 6 or dark_theme_enabled_by_user:
+        is_dark_theme = True
+    else:
+        is_dark_theme = False
+    assert is_dark_theme is True
 
 
 def test_find_suitable_user():
@@ -55,22 +52,22 @@ def test_find_suitable_user():
     # TODO найдите пользователя с именем "Olga"
 
 
-suitable_user = None
-for user in users:
-    if user['name'] == 'Olga':
-        suitable_user = user
-assert suitable_user == {"name": "Olga", "age": 45}
+    suitable_user = None
+    for user in users:
+        if user['name'] == 'Olga':
+            suitable_user = user
+    assert suitable_user == {"name": "Olga", "age": 45}
 
-# TODO найдите всех пользователей младше 20 лет
+    # TODO найдите всех пользователей младше 20 лет
 
-suitable_user = None
-for user in users:
-    if user['age'] < 20:
-        suitable_user = user
-assert suitable_user == [
-    {"name": "Stanislav", "age": 15},
-    {"name": "Maria", "age": 18},
-]
+    suitable_user = []
+    for user in users:
+        if user['age'] < 20:
+            suitable_user.append(user)
+    assert suitable_user == [
+        {"name": "Stanislav", "age": 15},
+        {"name": "Maria", "age": 18},
+    ]
 
 
 # Сделайте функцию, которая будет печатать
@@ -85,16 +82,25 @@ assert suitable_user == [
 
 
 def test_readable_function():
+    find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
-    find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
-def readable_function(func, *args, **kwargs):
+
+def readable_function(func, *args):
+    # print(func.__name__)
+    # print(func.__name__.replace('_', ' '))
+    # print(func.__name__.replace('_', ' ').title())
+    # print([*args])
+    # print(", ".join([*args]))
+
     func_name = func.__name__.replace('_', ' ').title()
 
-    args_names = ", ".join([*args, *kwargs.values()])
-    return f'{func_name} {{args_names}}'
+    args_names = ", ".join([*args])
+    function_arg_name = f'{func_name} [{args_names}]'
+    print(function_arg_name)
+    return function_arg_name
 
 
 
