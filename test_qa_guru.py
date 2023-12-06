@@ -25,12 +25,13 @@ def test_dark_theme_by_time_and_user_choice():
     dark_theme_enabled_by_user = None - Пользователь не сделал выбор (используется переключение по времени системы)
     """
     current_time = time(hour=23)
-    dark_theme_enabled_by_user = True
+
+    dark_theme_enabled_by_user = False
     # TODO переключите темную тему в зависимости от времени суток,
     #  но учтите что темная тема может быть включена вручную
 
-
-    if current_time.hour > 22 or current_time.hour < 6 or dark_theme_enabled_by_user:
+    if (current_time.hour > 22 or current_time.hour < 6 and dark_theme_enabled_by_user == None)\
+            or dark_theme_enabled_by_user:
         is_dark_theme = True
     else:
         is_dark_theme = False
@@ -50,7 +51,6 @@ def test_find_suitable_user():
     ]
 
     # TODO найдите пользователя с именем "Olga"
-
 
     suitable_user = None
     for user in users:
@@ -87,7 +87,6 @@ def test_readable_function():
     go_to_companyname_homepage(page_url="https://companyname.com")
 
 
-
 def readable_function(func, *args):
     # print(func.__name__)
     # print(func.__name__.replace('_', ' '))
@@ -101,7 +100,6 @@ def readable_function(func, *args):
     function_arg_name = f'{func_name} [{args_names}]'
     print(function_arg_name)
     return function_arg_name
-
 
 
 def open_browser(browser_name):
