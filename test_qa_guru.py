@@ -32,11 +32,11 @@ dark_theme_enabled_by_user: bool = True
 is_dark_theme = True
 
 if dark_theme_enabled_by_user:
-        is_dark_theme = True
+    is_dark_theme = True
 elif dark_theme_enabled_by_user is None:
 
     if (current_time.hour > 22 or current_time.hour < 6 and dark_theme_enabled_by_user == None) \
-        or dark_theme_enabled_by_user:
+            or dark_theme_enabled_by_user:
         is_dark_theme = True
 else:
     is_dark_theme = False
